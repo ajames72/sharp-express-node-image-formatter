@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>[[model.title]]</title>
+    <title>[[= model.title]]</title>
     <link rel="stylesheet" href=""/stylesheets/style.css" />
   </head>
   <body>
-  <h1>[[model.message]]</h1>
-  <h2>[[model.error.status]]</h2>
-  <pre>[[model.error.stack]]</pre>
+  <h1>[[= model.message]]</h1>
+  <h2>[[= model.error.status]]</h2>
+  <pre>[[= model.error.stack]]</pre>
   </body>
 </html>
