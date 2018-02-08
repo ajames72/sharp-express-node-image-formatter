@@ -60,3 +60,6 @@ typings/
 # IOS
 .DS_Store
 
+# Webstorm
+.idea/
+
