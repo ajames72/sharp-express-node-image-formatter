@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>[[= model.title ]]</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script src="/javascripts/drag_and_drop.js"></script>
+  </head>
+  <body>
+
+    <div id="drop-zone"
+        style="position: absolute; top: 100px; left: 50px; height: 600px; width: 600px; background-color: aliceblue;"
+        ondragover="dragover_handler(event);"
+        ondrop="drop_handler(event);"></div>
+  </body>
+</html>
