@@ -18,11 +18,6 @@ var displayDroppedImage = function(imageResult) {
        * @TODO: Need to scale image to fit for preview
        * Or make it dragable
        */
-      /*
-      var imageAspectRatio = image.width / image.height;
-      var canvasAspectRatio = snapShot.width / snapShot.height;
-      console.log('Image', image.height, image.width, imageAspectRatio);
-      */
       context.drawImage(this, 0, 0, width, height);
     }
   } else {
