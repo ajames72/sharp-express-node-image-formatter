@@ -1,7 +1,31 @@
 /**
- * @TODO: modularise
+ * @TODO: This should probably be written using React
  */
-function callFormatter() {
+var displayDroppedImage = function(imageResult) {
+  var snapShot = document.getElementById('snapshot');
+
+  if(snapShot) {
+    var context = snapshot.getContext('2d');
+
+    var height = snapShot.clientHeight;
+    var width = snapShot.clientWidth;
+
+    var image = new Image();
+    image.src = imageResult;
+
+    image.onload = function() {
+      /**
+       * @TODO: Need to scale image to fit for preview
+       * Or make it dragable
+       */
+      context.drawImage(this, 0, 0, width, height);
+    }
+  } else {
+    console.error('Cannot find snapshot canvas element');
+  }
+}
+
+var callFormatter = function() {
 
     $.ajax({
         method: 'POST',
@@ -10,8 +34,6 @@ function callFormatter() {
     })
         .done(function(data) {
             console.log('success', data);
-        }, function(err) {
-            console.log('error', err);
         })
         .fail(function(){
             console.log('ajax failed')
@@ -19,7 +41,7 @@ function callFormatter() {
 }
 
 // To use es6 here, would have to incorporate webpack
-function dragover_handler(ev) {
+var dragover_handler = function(ev) {
     ev.preventDefault();
     // Set the dropEffect to move
     //ev.dataTransfer.dropEffect = "move"
@@ -27,20 +49,18 @@ function dragover_handler(ev) {
     //console.log('dragover_handler');
 }
 
-function drop_handler(ev) {
+var drop_handler = function(ev) {
     ev.preventDefault();
 
     var dt = ev.dataTransfer;
     var files = dt.files;
     var reader  = new FileReader();
 
-    //console.log('drop_handler', files);
-
     reader.onload = (function(event){
-        console.log('reader onload event', event);
         //Image - event.target.result
-        callFormatter()
+        displayDroppedImage(event.target.result);
 
+        callFormatter()
     });
     //Only if image
     reader.readAsDataURL(files[0]);

@@ -12,8 +12,10 @@
   <body>
 
     <div id="drop-zone"
-        style="position: absolute; top: 100px; left: 50px; height: 600px; width: 600px; background-color: aliceblue;"
+        class="drop-zone"
         ondragover="dragover_handler(event);"
-        ondrop="drop_handler(event);"></div>
+        ondrop="drop_handler(event);">
+        <canvas id="snapshot" class="snapshot"></canvas>
+    </div>
   </body>
 </html>
