@@ -25,19 +25,24 @@ var displayDroppedImage = function(imageResult) {
   }
 }
 
-var callFormatter = function() {
+var callFormatter = function(blob) {
+    var formData = new FormData();
+    formData.append('image', blob); //event.target.files[0] data going here
+    console.log(formData.get('image'));
 
+    // Not Working
+    // Maybe the headers from the post need setting on the client?
     $.ajax({
-        method: 'POST',
         url: '/format',
-        dataType: 'json'
-    })
-        .done(function(data) {
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        success: (function(data) {
             console.log('success', data);
         })
-        .fail(function(){
-            console.log('ajax failed')
-        })
+    });
 }
 
 // To use es6 here, would have to incorporate webpack
@@ -57,11 +62,11 @@ var drop_handler = function(ev) {
     var reader  = new FileReader();
 
     reader.onload = (function(event){
-        //Image - event.target.result
         displayDroppedImage(event.target.result);
 
-        callFormatter()
+        // callFormatter(event.target.result);
+        callFormatter(files[0]);
     });
-    //Only if image
+
     reader.readAsDataURL(files[0]);
 }
