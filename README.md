@@ -11,12 +11,12 @@ Navigate to the project directory root and run `npm start`
 ## Documentation
 
 _(Documentation is pending)_
+### Reference
+- [Using Multer](https://www.youtube.com/watch?v=9Qzmri1WaaE)
+- [Express Middleware](https://expressjs.com/en/guide/using-middleware.html)
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality.
-
-## Reference
-- Using Multer: https://www.youtube.com/watch?v=9Qzmri1WaaE
 
 ## Release History
 v0.1
