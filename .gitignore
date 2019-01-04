@@ -63,3 +63,7 @@ typings/
 # Webstorm
 .idea/
 
+# Temp image uploads
+server/public/images/uploads/*
+server/public/images/output/*
+

@@ -1,6 +1,7 @@
 /**
  * @TODO: This should probably be written using React
  */
+// https://css-tricks.com/drag-and-drop-file-uploading/
 var displayDroppedImage = function(imageResult) {
   var snapShot = document.getElementById('snapshot');
 
@@ -25,29 +26,33 @@ var displayDroppedImage = function(imageResult) {
   }
 }
 
-var callFormatter = function() {
+var callFormatter = function(blob) {
+    var formData = new FormData();
+
+    for(var i = 0; i < blob.length; i++) {
+      formData.append('image-' + (i + 1), blob[i]);
+    }
 
     $.ajax({
-        method: 'POST',
         url: '/format',
-        dataType: 'json'
-    })
-        .done(function(data) {
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: (function(data) {
             console.log('success', data);
         })
-        .fail(function(){
-            console.log('ajax failed')
-        })
+    });
 }
 
 // To use es6 here, would have to incorporate webpack
-var dragover_handler = function(ev) {
-    ev.preventDefault();
-    // Set the dropEffect to move
-    //ev.dataTransfer.dropEffect = "move"
-
-    //console.log('dragover_handler');
-}
+// var dragover_handler = function(ev) {
+//     ev.preventDefault();
+//     // Set the dropEffect to move
+//     //ev.dataTransfer.dropEffect = "move"
+// 
+//     //console.log('dragover_handler');
+// }
 
 var drop_handler = function(ev) {
     ev.preventDefault();
@@ -57,11 +62,10 @@ var drop_handler = function(ev) {
     var reader  = new FileReader();
 
     reader.onload = (function(event){
-        //Image - event.target.result
         displayDroppedImage(event.target.result);
 
-        callFormatter()
+        callFormatter(files);
     });
-    //Only if image
+
     reader.readAsDataURL(files[0]);
 }
