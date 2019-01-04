@@ -1,6 +1,7 @@
 /**
  * @TODO: This should probably be written using React
  */
+// https://css-tricks.com/drag-and-drop-file-uploading/
 var displayDroppedImage = function(imageResult) {
   var snapShot = document.getElementById('snapshot');
 
@@ -27,18 +28,17 @@ var displayDroppedImage = function(imageResult) {
 
 var callFormatter = function(blob) {
     var formData = new FormData();
-    formData.append('image', blob); //event.target.files[0] data going here
-    console.log(formData.get('image'));
 
-    // Not Working
-    // Maybe the headers from the post need setting on the client?
+    for(var i = 0; i < blob.length; i++) {
+      formData.append('image-' + (i + 1), blob[i]);
+    }
+
     $.ajax({
         url: '/format',
         type: 'POST',
         data: formData,
         contentType: false,
         processData: false,
-        dataType: 'json',
         success: (function(data) {
             console.log('success', data);
         })
@@ -46,13 +46,13 @@ var callFormatter = function(blob) {
 }
 
 // To use es6 here, would have to incorporate webpack
-var dragover_handler = function(ev) {
-    ev.preventDefault();
-    // Set the dropEffect to move
-    //ev.dataTransfer.dropEffect = "move"
-
-    //console.log('dragover_handler');
-}
+// var dragover_handler = function(ev) {
+//     ev.preventDefault();
+//     // Set the dropEffect to move
+//     //ev.dataTransfer.dropEffect = "move"
+// 
+//     //console.log('dragover_handler');
+// }
 
 var drop_handler = function(ev) {
     ev.preventDefault();
@@ -64,8 +64,7 @@ var drop_handler = function(ev) {
     reader.onload = (function(event){
         displayDroppedImage(event.target.result);
 
-        // callFormatter(event.target.result);
-        callFormatter(files[0]);
+        callFormatter(files);
     });
 
     reader.readAsDataURL(files[0]);
