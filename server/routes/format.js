@@ -22,7 +22,7 @@ router.post('/', (req, res, err) => {
     if(err) {
       console.log(err);
     } else {
-      console.log(req.file);
+      // console.log(req.file);
       FormatController.root(req, res);
     }
   });
