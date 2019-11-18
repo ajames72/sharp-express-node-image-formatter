@@ -26,6 +26,12 @@ var displayDroppedImage = function(imageResult) {
   }
 }
 
+var displayNewImage = function(imageResult) {
+    var imageElement = document.createElement('img');
+    imageElement.setAttribute('src', imageResult);
+    document.getElementById('result-zone').appendChild(imageElement);
+};
+
 var callFormatter = function(blob) {
     var formData = new FormData();
 
@@ -41,18 +47,18 @@ var callFormatter = function(blob) {
         processData: false,
         success: (function(data) {
             console.log('success', data);
+            displayNewImage('data:image/png;base64, ' + data.bufferedImage);
         })
     });
 }
 
-// To use es6 here, would have to incorporate webpack
-// var dragover_handler = function(ev) {
-//     ev.preventDefault();
-//     // Set the dropEffect to move
-//     //ev.dataTransfer.dropEffect = "move"
-// 
-//     //console.log('dragover_handler');
-// }
+var dragover_handler = function(ev) {
+    ev.preventDefault();
+    // Set the dropEffect to move
+    ev.dataTransfer.dropEffect = "move"
+
+    console.log('dragover_handler');
+}
 
 var drop_handler = function(ev) {
     ev.preventDefault();

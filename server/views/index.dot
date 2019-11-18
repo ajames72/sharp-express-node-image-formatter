@@ -10,12 +10,13 @@
   <script src="/javascripts/drag_and_drop.js"></script>
   </head>
   <body>
-
+    <div id="result-zone" style="height: '100px'; width: '100px';" />
     <div id="drop-zone"
         class="drop-zone"
         ondragover="dragover_handler(event);"
         ondrop="drop_handler(event);">
         <canvas id="snapshot" class="snapshot"></canvas>
     </div>
+
   </body>
 </html>
