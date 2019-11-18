@@ -10,7 +10,7 @@
   <script src="/javascripts/drag_and_drop.js"></script>
   </head>
   <body>
-    <div id="result-zone" style="height: '100px'; width: '100px';" />
+    <div id="result-zone" style="position: absolute; top: 20px; right: 20px; z-index: 100;"></div>
     <div id="drop-zone"
         class="drop-zone"
         ondragover="dragover_handler(event);"

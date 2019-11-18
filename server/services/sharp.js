@@ -6,11 +6,11 @@ module.exports.createSharpImage = (imgSrc) => {
   return new Promise((resolve, reject) => {
     try {
       const bufferedImage = sharp(imgSrc)
-          .rotate(180)
+          // .rotate(180)
           .resize({
               width: 200,
-              height: 300,
-            fit: 'contain'
+              height: 400,
+            fit: 'inside'
             // withoutEnlargement: true
           })
           .png()
