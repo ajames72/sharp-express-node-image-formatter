@@ -7,7 +7,7 @@ module.exports.root = (req, res) => {
   console.log('req.headers', req.headers);
 
   sharp.createSharpImage(req.file.path).then((bufferedImage) => {
-      res.status(200).json({'response': `nodemon success`, bufferedImage: Buffer.from(bufferedImage, 'base64').toString('base64') });
+      res.status(200).json({'response': `nodemon success`, bufferedImage: Buffer.from(bufferedImage).toString('base64') });
   })
   .catch((err) => {
     console.log('FC ERR', err);
